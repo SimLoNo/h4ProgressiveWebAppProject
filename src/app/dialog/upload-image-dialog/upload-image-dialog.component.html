@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Upload image</h2>
+<mat-dialog-content [formGroup]="uploadForm">
+  <img [src]="imgFile" style="width: 400px; height:400px">
+  <mat-form-field>
+      <input matInput
+              placeholder="File name"
+             formControlName="name">
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput
+              placeholder="Image file type"
+             formControlName="imgType">
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput
+              placeholder="Image width"
+             formControlName="imgWidth">
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput
+              placeholder="Image height"
+             formControlName="imgHeight">
+  </mat-form-field>
+
+</mat-dialog-content>
