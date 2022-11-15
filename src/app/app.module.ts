@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -15,6 +16,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { UploadImageDialogComponent } from './dialog/upload-image-dialog/upload-image-dialog.component';
 import { MatTableModule } from '@angular/material/table';
 import { ShowImagesComponent } from './show-images/show-images.component';
+import { ShowImageDialogComponent } from './dialog/show-image-dialog/show-image-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ShowImagesComponent } from './show-images/show-images.component';
     HomeComponent,
     UploadComponent,
     UploadImageDialogComponent,
-    ShowImagesComponent
+    ShowImagesComponent,
+    ShowImageDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,9 @@ import { ShowImagesComponent } from './show-images/show-images.component';
     HttpClientModule,
     MaterialModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    RouterModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

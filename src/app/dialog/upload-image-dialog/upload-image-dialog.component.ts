@@ -9,8 +9,9 @@ import { ImageModel } from 'src/app/_model/image-model';
   templateUrl: './upload-image-dialog.component.html',
   styleUrls: ['./upload-image-dialog.component.scss']
 })
-export class UploadImageDialogComponent implements OnInit {
+export class UploadImageDialogComponent{
   imgFile: string = '';
+  fileTypes:string[] = ['png','jpg','jpeg'];
 
   uploadForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -18,17 +19,14 @@ export class UploadImageDialogComponent implements OnInit {
     imgWidth: new FormControl(400, [Validators.required]),
     imgHeight: new FormControl(400, [Validators.required])
   });
+
+  selectFormControl = new FormControl('', Validators.required);
   constructor(private fb: FormBuilder,
     private dialogRef: MatDialogRef<UploadImageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
       this.imgFile = data.uploadedImage;
      }
 
-
-
-  ngOnInit(): void {
-
-  }
 
   close(){
     this.dialogRef.close();

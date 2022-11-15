@@ -1,19 +1,8 @@
+import { ShowImageDialogComponent } from './../dialog/show-image-dialog/show-image-dialog.component';
 import { PictureServiceService } from './../_service/picture-service.service';
-import { RowElement } from './../_model/row-element';
-import { Component, OnInit } from '@angular/core';
-
-const ELEMENT_DATA: RowElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { Component} from '@angular/core';
+import { ImageModel } from '../_model/image-model';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-show-images',
@@ -24,7 +13,23 @@ export class ShowImagesComponent{
 
   displayedColumns:string[] = ['mainImage', 'ImageName', 'ImageFileType', 'MainImageHeight', 'MainImageWidth'];
   dataSource = this.imageService.getAllPictures();
-  constructor(private imageService: PictureServiceService) {}
+  clickedRows = new Set<ImageModel>();
+  constructor(private dialog: MatDialog, private imageService: PictureServiceService) {}
 
+  showImage(image:ImageModel):void{
+    console.log("Clicked and running. ",image);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 1,
+      mainImage:image.mainImage,
+      imageName:image.ImageName,
+      imageFileType:image.ImageFileType,
+      mainImageHeight:image.MainImageHeight,
+      mainImageWidth:image.MainImageWidth
+    };
+    this.dialog.open(ShowImageDialogComponent, dialogConfig);
+  }
 
 }
