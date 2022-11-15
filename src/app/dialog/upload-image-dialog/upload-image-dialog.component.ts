@@ -1,6 +1,8 @@
+
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import { ImageModel } from 'src/app/_model/image-model';
 
 @Component({
   selector: 'app-upload-image-dialog',
@@ -22,8 +24,25 @@ export class UploadImageDialogComponent implements OnInit {
       this.imgFile = data.uploadedImage;
      }
 
+
+
   ngOnInit(): void {
 
   }
+
+  close(){
+    this.dialogRef.close();
+   }
+   save(){
+    let image:ImageModel = {
+      mainImage: this.imgFile,
+      SmallImage : this.imgFile,
+      ImageName: this.uploadForm.get('name').value,
+      ImageFileType: this.uploadForm.get('imgType').value,
+      MainImageHeight: this.uploadForm.get('imgHeight').value,
+      MainImageWidth: this.uploadForm.get('imgWidth').value,
+    }
+    this.dialogRef.close(image);
+   }
 
 }

@@ -13,13 +13,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
 import {MatDialogModule} from '@angular/material/dialog';
 import { UploadImageDialogComponent } from './dialog/upload-image-dialog/upload-image-dialog.component';
+import { MatTableModule } from '@angular/material/table';
+import { ShowImagesComponent } from './show-images/show-images.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UploadComponent,
-    UploadImageDialogComponent
+    UploadImageDialogComponent,
+    ShowImagesComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { UploadImageDialogComponent } from './dialog/upload-image-dialog/upload-
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

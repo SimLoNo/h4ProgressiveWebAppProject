@@ -1,7 +1,8 @@
+
+import { PictureServiceService } from './../_service/picture-service.service';
 import { UploadImageDialogComponent } from './../dialog/upload-image-dialog/upload-image-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 
 @Component({
@@ -17,7 +18,7 @@ export class UploadComponent implements OnInit {
    file: new FormControl('', [Validators.required]),
    imgSrc: new FormControl('', [Validators.required])
  });
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private imageService:PictureServiceService) { }
   ngOnInit(): void {
   }
 
@@ -32,7 +33,20 @@ export class UploadComponent implements OnInit {
       uploadedImage: this.imgFile
     };
 
-    this.dialog.open(UploadImageDialogComponent, dialogConfig);
+    //this.dialog.open(UploadImageDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(UploadImageDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+        data => {console.log("Dialog output:", data);
+        if (data === undefined) {
+          this.imgFile = '';
+          this.uploadForm.reset();
+        }
+        else{
+          console.log("Dialog output:", data);
+          this.imageService.savePicture(data);
+        }
+  });
 }
 
   get uf(){
