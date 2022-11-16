@@ -13,9 +13,11 @@ export class ShowImageDialogComponent{
 
   constructor(
     @Inject(MAT_DIALOG_DATA) data:any) {
-      console.log("ShownData ", data);
-      console.log("Type is: ",typeof data.ImageName)
-      console.log("imageName: ",data.ImageName);
+      // Debug logging.
+      // console.log("ShownData ", data);
+      // console.log("Type is: ",typeof data.ImageName)
+      // console.log("imageName: ",data.ImageName);
+      // Fills the imageModel property with the sent data.
       this.imageModel ={
         mainImage:data.mainImage,
         ImageName:data.imageName,
@@ -23,7 +25,7 @@ export class ShowImageDialogComponent{
         MainImageHeight:data.mainImageHeight,
         MainImageWidth:data.mainImageWidth,
         SmallImage:null}
-        console.log("NameValue: ",this.imageModel.ImageName);
+        //console.log("NameValue: ",this.imageModel.ImageName); // debug logging
      }
 
 

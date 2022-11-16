@@ -1,19 +1,18 @@
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ImageModel } from '../_model/image-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PictureServiceService {
-  images:ImageModel[] = [];
+  images:ImageModel[] = []; // Array to hold the pictures with data.
   constructor() { }
 
-  getAllPictures():ImageModel[]{
+  getAllPictures():ImageModel[]{ // Method that returns the entire list of pitures
     return this.images;
   }
-  savePicture(newImage:ImageModel):void{
+  savePicture(newImage:ImageModel):void{ // Adds a picture to the array.
     this.images.push(newImage);
   }
 }

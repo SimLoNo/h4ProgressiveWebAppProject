@@ -10,9 +10,10 @@ import { ImageModel } from 'src/app/_model/image-model';
   styleUrls: ['./upload-image-dialog.component.scss']
 })
 export class UploadImageDialogComponent{
-  imgFile: string = '';
-  fileTypes:string[] = ['png','jpg','jpeg'];
+  imgFile: string = ''; // Contains the image as a string, no idea how that can work, but it appear to do so.
+  fileTypes:string[] = ['png','jpg','jpeg']; // property to hold the file options.
 
+  // In theory it should force the user to insert data, but it appears I do not actually verify that before I save.
   uploadForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     imgType: new FormControl('', [Validators.required]),
@@ -20,18 +21,18 @@ export class UploadImageDialogComponent{
     imgHeight: new FormControl(400, [Validators.required])
   });
 
-  selectFormControl = new FormControl('', Validators.required);
-  constructor(private fb: FormBuilder,
+  selectFormControl = new FormControl('', Validators.required); // An attempt to see if that'd help with the dropdown, but still not been able to make it work.
+  constructor(private fb: FormBuilder, // I don't know what fb is used for, if I get around to work some more, I might check that I can remove it without consequence.
     private dialogRef: MatDialogRef<UploadImageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) data) {
+    @Inject(MAT_DIALOG_DATA) data) {// Injects the sent data (image) to the dialog.
       this.imgFile = data.uploadedImage;
      }
 
 
-  close(){
+  close(){ // Closes the dialog without saving the image.
     this.dialogRef.close();
    }
-   save(){
+   save(){ // Saves the image and closes the dialog.
     let image:ImageModel = {
       mainImage: this.imgFile,
       SmallImage : this.imgFile,

@@ -11,12 +11,12 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
-  imgFile: string = '';
+  imgFile: string = ''; // Holds the image as a string.
 
   uploadForm = new FormGroup({
-   name: new FormControl('', [Validators.required]),
+   //name: new FormControl('', [Validators.required]),
    file: new FormControl('', [Validators.required]),
-   imgSrc: new FormControl('', [Validators.required])
+   //imgSrc: new FormControl('', [Validators.required])
  });
   constructor(private dialog: MatDialog, private imageService:PictureServiceService) { }
   ngOnInit(): void {
@@ -37,14 +37,15 @@ export class UploadComponent implements OnInit {
     const dialogRef = this.dialog.open(UploadImageDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-        data => {console.log("Dialog output:", data);
-        if (data === undefined) {
+        data => {
+          //console.log("Dialog output:", data); // debug log
+        if (data === undefined) { // if there is no returned data, reset the form control.
           this.imgFile = '';
           this.uploadForm.reset();
         }
         else{
-          console.log("Dialog output:", data);
-          this.imageService.savePicture(data);
+          //console.log("Dialog output:", data); // debug log
+          this.imageService.savePicture(data); // Calles the ImageService to save the image and data.
         }
   });
 }

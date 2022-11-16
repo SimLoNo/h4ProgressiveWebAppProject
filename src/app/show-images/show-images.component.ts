@@ -11,13 +11,13 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 })
 export class ShowImagesComponent{
 
-  displayedColumns:string[] = ['mainImage', 'ImageName', 'ImageFileType', 'MainImageHeight', 'MainImageWidth'];
-  dataSource = this.imageService.getAllPictures();
-  clickedRows = new Set<ImageModel>();
+  displayedColumns:string[] = ['mainImage', 'ImageName', 'ImageFileType', 'MainImageHeight', 'MainImageWidth']; // Sets the variables to show in the table in HTML.
+  dataSource = this.imageService.getAllPictures(); // Gets all the pictures from the ImageService.
+  //clickedRows = new Set<ImageModel>();
   constructor(private dialog: MatDialog, private imageService: PictureServiceService) {}
 
-  showImage(image:ImageModel):void{
-    console.log("Clicked and running. ",image);
+  showImage(image:ImageModel):void{ // Opens a dialog with the image.
+    //console.log("Clicked and running. ",image); // debug log
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = true;
